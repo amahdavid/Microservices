@@ -1,0 +1,3 @@
+- to run each service separately, run from the root directory
+- Orderservice: mvn spring-boot:run -Dspring-boot.run.main-class=org.microservices.orderservice.OrderServiceApplication
+- Userservice: mvn spring-boot:run -Dspring-boot.run.main-class=org.microservices.userservice.UserServiceApplication

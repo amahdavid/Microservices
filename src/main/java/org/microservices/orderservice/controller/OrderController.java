@@ -1,12 +1,11 @@
 package org.microservices.orderservice.controller;
 
+import org.microservices.orderservice.exceptions.*;
 import org.microservices.orderservice.model.Order;
 import org.microservices.orderservice.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController
@@ -23,11 +22,17 @@ public class OrderController {
     @GetMapping("/{id}")
     public ResponseEntity<Order> getOrderById(@PathVariable Long id) {
         Order order = orderService.getOrderById(id);
-        return order != null ? ResponseEntity.ok(order) : ResponseEntity.notFound().build();
+        if (order == null) {
+            throw new OrderNotFoundException("Order with ID " + id + " not found.");
+        }
+        return ResponseEntity.ok(order);
     }
 
     @PostMapping
-    public ResponseEntity<Order> createOrder(@RequestBody Order order) {
+    public ResponseEntity<Object> createOrder(@RequestBody Order order) {
+        if (order.getProduct() == null || order.getQuantity() <= 0) {
+            throw new InvalidOrderException("Invalid order details: Product cannot be null and quantity must be greater than zero.");
+        }
         Order createdOrder = orderService.createOrder(order);
         return ResponseEntity.status(HttpStatus.CREATED).body(createdOrder);
     }
