@@ -13,9 +13,9 @@ public class Order {
     private Long userId; // Foreign key to associate order with a user
     private String product;
     private Integer quantity;
+
     // Constructors
     public Order() {}
-
     public Order(Long userId, String product, Integer quantity) {
         this.userId = userId;
         this.product = product;
