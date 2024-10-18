@@ -20,7 +20,7 @@ public class OrderService {
         return orderRepository.findById(id).orElse(null);
     }
 
-    public Order CreateOrder(Order order) {
+    public Order createOrder(Order order) {
         return orderRepository.save(order);
     }
 }
