@@ -20,15 +20,15 @@ public class OrderController {
         return orderService.getAllOrders();
     }
 
-    @GetMapping("/(id)")
+    @GetMapping("/{id}")  // Corrected this line
     public ResponseEntity<Order> getOrderById(@PathVariable Long id) {
         Order order = orderService.getOrderById(id);
         return order != null ? ResponseEntity.ok(order) : ResponseEntity.notFound().build();
     }
 
     @PostMapping
-    public ResponseEntity<Order> createOrder(@PathVariable Order order) {
-        Order createOrder = orderService.createOrder(order);
-        return ResponseEntity.status(HttpStatus.CREATED).body(createOrder);
+    public ResponseEntity<Order> createOrder(@RequestBody Order order) {  // Corrected this line
+        Order createdOrder = orderService.createOrder(order);
+        return ResponseEntity.status(HttpStatus.CREATED).body(createdOrder);
     }
 }

@@ -20,14 +20,14 @@ public class UserController {
         return userService.getAllUsers();
     }
 
-    @GetMapping("/(id)")
+    @GetMapping("/{id}")  // Corrected this line
     public ResponseEntity<User> getUserById(@PathVariable Long id) {
         User user = userService.getUserById(id);
         return user != null ? ResponseEntity.ok(user) : ResponseEntity.notFound().build();
     }
 
     @PostMapping
-    public ResponseEntity<User> createUser(@PathVariable User user) {
+    public ResponseEntity<User> createUser(@RequestBody User user) {  // Corrected this line
         User createdUser = userService.createUser(user);
         return ResponseEntity.status(HttpStatus.CREATED).body(createdUser);
     }

@@ -28,6 +28,9 @@ public class OrderService {
     public Order createOrder(Order order) {
         String USER_SERVICE_URL = "http://localhost:8081/users";
         User user = restTemplate.getForObject(USER_SERVICE_URL + "/" + order.getUserId(), User.class);
+        if (user == null) {
+            throw new RuntimeException("User not found with ID: " + order.getUserId());
+        }
         return orderRepository.save(order);
     }
 }
