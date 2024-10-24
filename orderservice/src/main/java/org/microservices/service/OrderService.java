@@ -1,6 +1,6 @@
 package org.microservices.service;
 
-import org.apache.catalina.User;
+import org.microservices.dto.UserDTO;
 import org.microservices.model.Order;
 import org.microservices.repository.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +27,7 @@ public class OrderService {
 
     public Order createOrder(Order order) {
         String USER_SERVICE_URL = "http://localhost:8081/users";
-        User user = restTemplate.getForObject(USER_SERVICE_URL + "/" + order.getUserId(), User.class);
+        UserDTO user = restTemplate.getForObject(USER_SERVICE_URL + "/" + order.getUserId(), UserDTO.class);
         if (user == null) {
             throw new RuntimeException("User not found with ID: " + order.getUserId());
         }

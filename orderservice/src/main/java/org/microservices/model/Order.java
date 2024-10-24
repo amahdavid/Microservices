@@ -11,8 +11,8 @@ public class Order {
     private String product;
     private Integer quantity;
 
-    // Constructors
     public Order() {}
+
     public Order(Long userId, String product, Integer quantity) {
         this.userId = userId;
         this.product = product;
