@@ -1,0 +1,14 @@
+version: '3.8'
+services:
+  orderservice:
+    build:
+      context: ./orderservice
+      dockerfile: Dockerfile
+    ports:
+      - "8082:8082"
+  userservice:
+    build:
+      context: ./userservice
+      dockerfile: Dockerfile
+    ports:
+      - "8081:8081"
