@@ -1,16 +1,14 @@
-version: '3.8'
+version: '3.9'
 services:
   orderservice:
     build:
-      context: ./orderservice
-      dockerfile: Dockerfile
-    command: mvn clean package && java -jar orderservice.jar
-    ports:
-      - "8082:8082"
-  userservice:
-    build:
-      context: ./userservice
-      dockerfile: Dockerfile
-    command: mvn clean package && java -jar userservice.jar
+      context: .
+      dockerfile: orderservice/Dockerfile
     ports:
       - "8081:8081"
+  userservice:
+    build:
+      context: .
+      dockerfile: userservice/Dockerfile
+    ports:
+      - "8082:8082"

@@ -7,6 +7,7 @@
         <groupId>org.microservices</groupId>
         <artifactId>Microservices_Demo</artifactId>
         <version>1.0-SNAPSHOT</version>
+        <relativePath>../pom.xml</relativePath> <!-- path to the parent POM -->
     </parent>
 
     <artifactId>userservice</artifactId>
@@ -19,6 +20,15 @@
 
     <build>
         <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.10.1</version> <!-- Update this to a newer version -->
+                <configuration>
+                    <source>21</source>
+                    <target>21</target>
+                </configuration>
+            </plugin>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
@@ -33,5 +43,4 @@
             </plugin>
         </plugins>
     </build>
-
 </project>
