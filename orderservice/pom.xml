@@ -40,6 +40,9 @@
                         </goals>
                     </execution>
                 </executions>
+                <configuration>
+                    <mainClass>org.microservices.OrderServiceApplication</mainClass>
+                </configuration>
             </plugin>
         </plugins>
     </build>

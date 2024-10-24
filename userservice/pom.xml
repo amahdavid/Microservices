@@ -40,6 +40,9 @@
                         </goals>
                     </execution>
                 </executions>
+                <configuration>
+                    <mainClass>org.microservices.UserServiceApplication</mainClass>
+                </configuration>
             </plugin>
         </plugins>
     </build>
