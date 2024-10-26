@@ -48,6 +48,7 @@
                             <addClasspath>true</addClasspath>
                             <classpathPrefix>${project.build.finalName}.lib/</classpathPrefix>
                             <mainClass>org.ordermicroservices.OrderServiceApplication</mainClass>
+                            <executable>true</executable>
                         </manifest>
                     </archive>
                 </configuration>
