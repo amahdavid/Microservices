@@ -5,9 +5,6 @@ WORKDIR /app
 # Copy the entire project to the container (including common module and parent POM)
 COPY . .
 
-# Run Maven install on the root POM to build and install all modules
-RUN mvn clean install -DskipTests
-
 # Package only the userservice
 WORKDIR /app/userservice
 RUN mvn clean package -DskipTests && ls /app/userservice/target
