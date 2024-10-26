@@ -17,22 +17,22 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
     }
 
-    @ExceptionHandler(UserNotFoundException.class)
+    @ExceptionHandler(InvalidUserInputException.class)
     public ResponseEntity<String> handleInvalidUserInputException(InvalidUserInputException ex) {
         return ResponseEntity.status(HttpStatus.CONFLICT).body(ex.getMessage());
     }
 
-    @ExceptionHandler(UserNotFoundException.class)
+    @ExceptionHandler(InvalidOrderException.class)
     public ResponseEntity<String> handleInvalidOrderException(InvalidOrderException ex) {
         return ResponseEntity.status(HttpStatus.CONFLICT).body(ex.getMessage());
     }
 
-    @ExceptionHandler(UserNotFoundException.class)
+    @ExceptionHandler(OrderNotFoundException.class)
     public ResponseEntity<String> handleOrderNotFoundException(OrderNotFoundException ex) {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
     }
 
-    @ExceptionHandler(Exception.class) // Catch-all for other exceptions
+    @ExceptionHandler(Exception.class)
     public ResponseEntity<String> handleGenericException(Exception ex) {
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("An unexpected error occurred: " + ex.getMessage());
     }
