@@ -10,7 +10,7 @@ RUN mvn clean install -DskipTests
 
 # Package only the userservice
 WORKDIR /app/userservice
-RUN mvn clean package -DskipTests
+RUN mvn clean package -DskipTests && ls /app/userservice/target
 
 # Stage 2: Create the runtime image
 FROM openjdk:21-jdk-slim
