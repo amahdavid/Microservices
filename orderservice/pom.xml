@@ -22,6 +22,10 @@
             <version>1.0-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
     </dependencies>
     <build>
         <plugins>
@@ -30,7 +34,7 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <version>3.1.0</version>
                 <configuration>
-                    <mainClass>org.microservices.UserServiceApplication</mainClass>
+                    <mainClass>org.microservices.OrderServiceApplication</mainClass>
                 </configuration>
             </plugin>
         </plugins>
