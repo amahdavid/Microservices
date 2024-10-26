@@ -10,7 +10,7 @@ RUN mvn clean install -DskipTests
 
 # Package only the orderservice
 WORKDIR /app/orderservice
-RUN mvn clean package -DskipTests && ls /app/userservice/target
+RUN mvn clean package -DskipTests && ls /app/orderservice/target
 
 # Stage 2: Create the runtime image
 FROM openjdk:21-jdk-slim
