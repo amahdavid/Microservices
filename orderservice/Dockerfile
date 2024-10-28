@@ -2,14 +2,12 @@
 FROM maven:3.9.8-eclipse-temurin-21 AS build
 WORKDIR /app
 COPY . .
-RUN mvn clean install -DskipTests
-WORKDIR /app/orderservice
-RUN mvn clean compile assembly:single -DskipTests  # Use assembly to create a fat jar
+RUN mvn clean package -DskipTests
 
 # Stage 2: Create the runtime image
 FROM openjdk:21-jdk-slim
 WORKDIR /app
-COPY --from=build /app/orderservice/target/orderservice-1.0-SNAPSHOT-jar-with-dependencies.jar orderservice.jar
+COPY --from=build /app/orderservice/target/orderservice-1.0-SNAPSHOT.jar orderservice.jar
 ENV PORT 8082
 EXPOSE ${PORT}
 ENTRYPOINT ["java", "-jar", "orderservice.jar"]
