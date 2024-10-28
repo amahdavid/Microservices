@@ -21,6 +21,7 @@
         <maven.compiler.source>21</maven.compiler.source>
         <maven.compiler.target>21</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <spring.boot.mainclass>org.usermicroservices.UserServiceApplication</spring.boot.mainclass>
     </properties>
 
     <dependencies>
@@ -49,6 +50,9 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <version>3.1.0</version>
+                <configuration>
+                    <mainClass>${spring.boot.mainclass}</mainClass>
+                </configuration>
                 <executions>
                     <execution>
                         <goals>
@@ -59,4 +63,3 @@
             </plugin>
         </plugins>
     </build>
-</project>
