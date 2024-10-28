@@ -9,4 +9,4 @@ FROM openjdk:21-jdk-slim
 WORKDIR /app
 COPY --from=build /app/orderservice/target/orderservice-1.0-SNAPSHOT.jar orderservice.jar
 RUN jar tf orderservice.jar
-ENTRYPOINT ["java", "-jar", "orderservice.jar"]
+CMD ["java", "-jar", "orderservice.jar"]

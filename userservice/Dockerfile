@@ -9,4 +9,4 @@ FROM openjdk:21-jdk-slim
 WORKDIR /app
 COPY --from=build /app/userservice/target/userservice-1.0-SNAPSHOT.jar userservice.jar
 RUN jar tf userservice.jar
-ENTRYPOINT ["java", "-jar", "userservice.jar"]
+CMD ["java", "-jar", "userservice.jar"]
