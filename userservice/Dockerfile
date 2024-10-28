@@ -8,6 +8,7 @@ RUN mvn clean package -DskipTests
 FROM openjdk:21-jdk-slim
 WORKDIR /app
 COPY --from=build /app/userservice/target/userservice-1.0-SNAPSHOT.jar userservice.jar
+RUN java -version
 ENV PORT 8081
 EXPOSE ${PORT}
 ENTRYPOINT ["java", "-jar", "userservice.jar"]

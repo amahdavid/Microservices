@@ -8,6 +8,7 @@ RUN mvn clean package -DskipTests
 FROM openjdk:21-jdk-slim
 WORKDIR /app
 COPY --from=build /app/orderservice/target/orderservice-1.0-SNAPSHOT.jar orderservice.jar
+RUN java -version
 ENV PORT 8082
 EXPOSE ${PORT}
 ENTRYPOINT ["java", "-jar", "orderservice.jar"]
