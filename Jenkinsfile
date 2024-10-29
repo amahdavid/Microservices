@@ -10,8 +10,7 @@ pipeline {
         stage('Build') {
             steps {
                 script {
-                    // Replace with your build commands, e.g., Maven or Gradle for both services
-                    // Assuming you are building both services separately
+                    // Build commands for both services using Maven
                     sh 'cd userservice && mvn clean package'
                     sh 'cd orderservice && mvn clean package'
                 }
@@ -20,7 +19,7 @@ pipeline {
         stage('Test') {
             steps {
                 script {
-                    // Run your tests here for both services
+                    // Run unit tests for both services
                     sh 'cd userservice && mvn test'
                     sh 'cd orderservice && mvn test'
                 }
@@ -35,14 +34,26 @@ pipeline {
                 }
             }
         }
-        stage('Deploy') {
+        stage('Push to Docker Registry') {
             steps {
                 script {
+                    // Log in to Docker Hub (if required)
+                    withCredentials([usernamePassword(credentialsId: 'dockerhub_credentials', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
+                        sh 'echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin'
+                    }
+
                     // Push Docker images for both services to Docker Hub
                     sh 'docker push $USERSERVICE_IMAGE'
                     sh 'docker push $ORDERSERVICE_IMAGE'
                 }
             }
+        }
+    }
+    post {
+        always {
+            // Clean up Docker images to save space
+            sh 'docker rmi $USERSERVICE_IMAGE || true'
+            sh 'docker rmi $ORDERSERVICE_IMAGE || true'
         }
     }
 }
