@@ -1,7 +1,5 @@
 pipeline {
-    agent {
-            docker { image 'maven:3.8.5-jdk-11' }
-        }
+    agent { docker { image 'maven:3.8.5-jdk-11' } }
 
     environment {
         USERSERVICE_IMAGE = 'amahchika/userservice:latest'
@@ -43,7 +41,6 @@ pipeline {
                     withCredentials([usernamePassword(credentialsId: 'dockerhub_credentials', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
                         sh 'echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin'
                     }
-
                     // Push Docker images for both services to Docker Hub
                     sh 'docker push $USERSERVICE_IMAGE'
                     sh 'docker push $ORDERSERVICE_IMAGE'
