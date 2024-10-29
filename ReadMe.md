@@ -1,3 +1,1 @@
-- to run each service separately, run from the root directory
-- Orderservice: mvn spring-boot:run -Dspring-boot.run.main-class=org.ordermicroservices.orderservice.OrderServiceApplication
-- Userservice: mvn spring-boot:run -Dspring-boot.run.main-class=org.ordermicroservices.userservice.UserServiceApplication
+- Testing weebhooks
